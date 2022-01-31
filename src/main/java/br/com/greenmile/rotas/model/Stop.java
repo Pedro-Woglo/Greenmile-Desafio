@@ -2,18 +2,14 @@ package br.com.greenmile.rotas.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotBlank;
 
 import br.com.greenmile.rotas.enums.StatusStop;
 
@@ -22,14 +18,22 @@ public class Stop implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long id;
+	@Column(name = "DESCRIPTION")
 	private String description;
+	@Column(name = "ADDRESS")
 	private String address;
+	@NotBlank
+	@Column(name = "LATITUDE")
 	private double latitude;
+	@NotBlank
+	@Column(name = "LONGITUDE")
 	private double longitude;
 	@Enumerated(EnumType.STRING)
+	@Column(name = "STATUS")
 	private StatusStop status = StatusStop.NOT_ANSWER;
-	@Column(name="deliveryradius")
+	@Column(name="DELIVERYRADIUS")
 	private int deliveryRadius;
 	
 	public Long getId() {

@@ -2,6 +2,8 @@ package br.com.greenmile.rotas.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class RotasController {
 	
 	@PostMapping("/route")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Rota cadastrar(@RequestBody Rota rota) {
+	public Rota cadastrar(@Valid @RequestBody Rota rota) {
 		return service.salvar(rota);
 	}
 	

@@ -5,17 +5,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import javax.validation.constraints.NotBlank;
 
 import br.com.greenmile.rotas.enums.StatusRota;
 
@@ -24,11 +22,16 @@ public class Rota implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long id;
+	@Column(name = "DATE")
 	private LocalDate date = LocalDate.now();
 	@Enumerated(EnumType.STRING)
+	@Column(name = "NAME")
 	private StatusRota status = StatusRota.NOT_STARTED;
+	@NotBlank
 	@OneToMany(cascade = CascadeType.ALL)
+	@Column(name = "STOPS")
 	private List<Stop> stops;
 
 	@Override
